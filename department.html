@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head onload="load()">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee</title>
+    <link rel="stylesheet" href="src/assets/css/w3.css">
+    <script src="src/assets/js/jquery.js"></script>
+    <style>
+        a{
+        text-decoration: none;
+        }
+    </style>
+    
+</head>
+<header>
+    <div class="container-fluid">
+        <nav class="w3-bar w3-xlarge w3-blue">  
+          <a href="index.html" class="w3-bar-item">Home</a>
+          <a href="employee.html" class="w3-bar-item">Employee</a>
+          <a href="department.html" class="w3-bar-item">Department</a>
+          <a href="#" class="w3-bar-item w3-disabled">Projects</a>
+          <a href="#" class="w3-bar-item w3-disabled">Services</a>
+        </nav>
+    </div>
+</header>
+<body>
+    <div class="w3-sidebar w3-bar-block w3-large w3-light-grey w3-card" style="width:200px">
+        <h2 class="w3-bar-item">Department</h2>
+        <button class="w3-bar-item w3-button tablink" onclick="deptfn(event, 'Found')">Search Records</button>
+        <button class="w3-bar-item w3-button tablink" onclick="deptfn(event, 'switch')">Switch Department</button>  
+        <a class="w3-bar-item w3-green w3-button tablink" href="dept.txt" download>Department Table</a>     
+      </div>
+      
+      <div style="margin-top:50px; margin-left:200px;">
+      
+        <div id="Found" class="w3-container dept">
+          <h2 align="center">Search Department Records</h2>
+          <form class="w3-padding-large" id="form1">
+            <div class="w3-row-padding">
+             <div class="w3-quarter">
+               <label>Starting Date</label>
+               <input class="w3-input w3-border" type="date" name="sdate" id="sdate" required>
+             </div>
+             <div class="w3-quarter">
+               <label>Ending Date</label>
+               <input class="w3-input w3-border" type="date" name="edate" id="edate">
+             </div>
+             <div class="w3-quarter">
+               <br>
+               <input type="submit" class="w3-button w3-text-white w3-blue w3-hover-white">  
+             </div>
+            </div>
+          </form>  
+            <br>
+            <table class="w3-padding w3-table-all w3-centered" >
+              <tr class="w3-blue">
+                <th>Department Name</th>
+                <th>Employee Name</th>
+                <th>Starting Date</th>
+                <th>Ending Date</th>
+            </tr>
+            <tbody id="dept-search">   
+                               <!-- Department Search Details are displayed here!-->
+              </tbody>
+            </table>
+            <br><br>
+            <div>
+              <a class="w3-left w3-button w3-blue w3-hover-green w3-round-medium" href="dsearch.txt" download>Get Ascii-Table as Text File</a>
+            </div>
+        </div>
+
+        <div id="switch" class="w3-container dept"style="display:none" >
+          <h2 align="center">Switch Department</h2>
+          <form id="form2" class="w3-padding-large">
+            <div class="w3-row-padding">
+             <div class="w3-quarter">
+               <label>Employee Name</label>
+               <input class="w3-input w3-border" type="text" maxlength="40" name="employee" id="employee" required>
+             </div>
+             <div class="w3-quarter">
+               <label>Department Name</label>
+               <input class="w3-input w3-border" type="text" maxlength="40" name="name" id="name">
+             </div>
+             <div class="w3-quarter">
+               <br>
+               <input type="submit" class="w3-button w3-text-white w3-blue w3-hover-white">  
+             </div>
+          </form>   
+        </div>
+            <br>
+            <table class="w3-padding w3-table-all w3-centered" >
+              <tr class="w3-blue">
+                <th colspan="2">Department Name</th>
+                <th>Employee Name</th>
+                <th>Starting Date</th>
+                <th>Ending Date</th>
+            </tr>
+            <tbody id="swh-dept">
+              <!-- Department Search Details are displayed here!-->
+            </tbody>
+            </table>
+        </div>
+    </div>
+    <div id="id01" class="w3-modal">
+      <div class="w3-modal-content w3-card-4 w3-animate-zoom">
+       <header class="w3-container w3-blue"> 
+        <span onclick="document.getElementById('id01').style.display='none'"  class="w3-button w3-blue w3-xlarge w3-display-topright">&times;</span>
+        <h2>Switch Department</h2>
+       </header>
+       <br>
+       <form class="w3-padding-large w3-large" id="form3">
+        <div class="w3-row-padding">
+         <div class="w3-half">
+          <label>Employee Name</label>
+          <input class="w3-input " type="text" maxlength="40" name="ename" id="ename" readonly> 
+         </div> 
+         <div class="w3-half">
+          <label>Current Department</label>
+          <input class="w3-input " type="text" maxlength="40" name="cdept" id="cdept" readonly> 
+         </div> 
+        </div>
+        <br>
+        <div class="w3-row-padding"> 
+         <div class="w3-half">
+          <label>Switch Department</label>
+          <input class="w3-input " type="text" maxlength="40" name="sdept" id="sdept" required> 
+         </div>
+         <div class="w3-half">
+          <label>Starting Date</label>
+          <input class="w3-input " type="date" name="ndate" id="ndate" > 
+         </div>
+        </div>
+        <br>
+       <div class="w3-container w3-row-padding">
+        <div class="w3-half">
+         <input type="submit" class="w3-input w3-blue w3-hover-green" value="Submit"> 
+        </div>
+        <div class="w3-half">
+         <input type="button" class="w3-input w3-white w3-border" onclick="document.getElementById('id01').style.display='none'" value="Close" >
+        </div>
+      </div>
+      </form> 
+      </div>
+     </div>
+</body>
+<script>
+  function deptfn(evt, name) {
+        var i, x, tablinks;
+        x = document.getElementsByClassName("dept");
+        for (i = 0; i < x.length; i++) {
+          x[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablink");
+        for (i = 0; i < x.length; i++) {
+          tablinks[i].className = tablinks[i].className.replace(" w3-blue", ""); 
+        }
+        document.getElementById(name).style.display = "block";
+        evt.currentTarget.className += " w3-blue";
+}
+function swhfn(evt, bttn){
+  var date = new Date();
+  var day = ("0" + date.getDate()).slice(-2);
+  var month = ("0" + (date.getMonth() + 1)).slice(-2);
+  var today = date.getFullYear() + "-" + (month) + "-" + (day);
+    var info = bttn.value.split(',');
+    document.getElementById("ename").value = info[0];
+    document.getElementById("cdept").value = info[1];
+    document.getElementById("ndate").defaultValue = today;
+    document.getElementById("id01").style.display='block';
+   }
+</script>
+<script src="src/assets/js/dept.js"></script>
+<script src="src/assets/js/switch.js"></script>
+<div id="result"></div>   
+<footer class="w3-bar w3-bottom w3-center w3-blue">&copy; Copyright Reserved 2019</footer>
+</html>
